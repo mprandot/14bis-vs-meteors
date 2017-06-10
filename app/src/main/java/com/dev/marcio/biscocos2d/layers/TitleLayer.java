@@ -36,13 +36,26 @@ public class TitleLayer extends CCLayer {
 
 
         CCSprite logo = new CCSprite(Assets.LOGO);
-        logo.setPosition(
-                screenResolution(CGPoint.ccp(
-                        screenWidth() / 2,
-                        screenHeight() - 130)
-                )
-        );
+        logo.setPosition(screenResolution(CGPoint.ccp(screenWidth() / 2, screenHeight() - 130)));
         this.addChild(logo);
+
+
+        CCSprite play = new CCSprite(Assets.PLAY);
+        play.setPosition(logo.getPosition().x, screenHeight() / 2);
+        this.addChild(play);
+
+        CCSprite score = new CCSprite(Assets.HIGHSCORE);
+        score.setPosition(logo.getPosition().x, play.getPosition().y - 50);
+        this.addChild(score);
+
+        CCSprite help = new CCSprite(Assets.HELP);
+        help.setPosition(logo.getPosition().x, score.getPosition().y - 50);
+        this.addChild(help);
+
+        CCSprite sound = new CCSprite(Assets.SOUND);
+        sound.setPosition(50, 50);
+        this.addChild(sound);
+
 
     }
 
