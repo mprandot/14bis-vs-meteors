@@ -6,7 +6,10 @@ import com.dev.marcio.biscocos2d.delegates.ButtonDelegate;
 
 import org.cocos2d.events.CCTouchDispatcher;
 import org.cocos2d.layers.CCLayer;
+import org.cocos2d.nodes.CCDirector;
 import org.cocos2d.nodes.CCSprite;
+import org.cocos2d.types.CGPoint;
+import org.cocos2d.types.CGRect;
 
 /**
  * Created by marcio on 09/06/17.
@@ -39,8 +42,12 @@ public class Button extends CCLayer {
     @Override
     public boolean ccTouchesBegan(MotionEvent event) {
         //run touch event
+        CGPoint touchLocation = CGPoint.make(event.getX(), event.getY());
+        touchLocation = CCDirector.sharedDirector().convertToGL(touchLocation);
+        touchLocation = this.convertToNodeSpace(touchLocation);
 
-        if (true) {
+        // verify button touch
+        if (CGRect.containsPoint(buttonImg.getBoundingBox(), touchLocation)) {
             delegate.buttonClicked(this);
         }
 

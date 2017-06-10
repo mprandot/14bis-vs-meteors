@@ -4,6 +4,7 @@ import android.bluetooth.BluetoothClass;
 import android.util.Log;
 
 import com.dev.marcio.biscocos2d.delegates.ButtonDelegate;
+import com.dev.marcio.biscocos2d.scene.GameScene;
 import com.dev.marcio.biscocos2d.util.Assets;
 
 import static com.dev.marcio.biscocos2d.util.DeviceSettings.screenResolution;
@@ -11,6 +12,8 @@ import static com.dev.marcio.biscocos2d.util.DeviceSettings.screenHeight;
 import static com.dev.marcio.biscocos2d.util.DeviceSettings.screenWidth;
 
 import org.cocos2d.layers.CCLayer;
+import org.cocos2d.nodes.CCDirector;
+import org.cocos2d.transitions.CCFadeTransition;
 import org.cocos2d.types.CGPoint;
 
 /**
@@ -68,15 +71,15 @@ public class MenuButtons extends CCLayer implements ButtonDelegate {
     public void buttonClicked(Button button) {
 
         if (button.equals(play)) {
-            Log.d("JOGO", "PLAY");
+            CCDirector.sharedDirector().replaceScene(
+                   CCFadeTransition.transition(1.0F,  GameScene.createGame())
+           );
 
         } else if (button.equals(score)) {
             Log.d("JOGO", "score");
 
         } else if (button.equals(help)) {
             Log.d("JOGO", "help");
-
         }
     }
-
 }
